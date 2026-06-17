@@ -18,6 +18,23 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Runner diagnostics (debug)
+        run: |
+          echo "=== Runner info ==="
+          uname -a || true
+          lsb_release -a 2>/dev/null || true
+          echo "=== Environment ==="
+          env | sort
+          echo "=== Disk usage ==="
+          df -h || true
+          echo "=== Python & pip ==="
+          python --version || true
+          python -m pip --version || true
+          echo "=== pip list ==="
+          python -m pip list || true
+          echo "=== Workspace files ==="
+          ls -la || true
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
